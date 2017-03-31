@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<meta charset="utf-8">
+		<title>單車教學</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="jquery.mobile-1.4.0.min.css" />
+		<script src="jquery-1.10.2.js"></script>
+		<script src="jquery.mobile-1.4.0.js"></script>
+		<script type="text/javascript" language="javascript">
+		
+		function videopanel(id)  //影片播放//
+		{
+		s = '<iframe width="100%" height="360" src="http://www.youtube.com/embed/' + id + '" frameborder="0" allowfullscreen></iframe>';
+        return s;
+		}
+		function videochange(id)  //影片更換//
+		{
+		document.getElementById("player").innerHTML = videopanel(id);
+		}
+		</script>
+	</head> 
+	<body>
+		<div data-role="page">
+			<div data-role="header">
+			<h1>單車教學影片</h1>
+				<a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+			</div><!-- /header -->
+			<div data-role="content"> 
+				<div id="player">
+				<iframe width="100%" height="360" src="http://www.youtube.com/embed/slb6RTWS9WE" frameborder="0" allowfullscreen></iframe>
+				</div>
+				
+				<br/><br/>
+				
+				<div id="list">
+				</div>	
+			</div><!-- /content -->
+				
+			<script>
+				var title=["單車介紹","騎乘安全檢查","坐墊高度調整 & 安全騎乘方式","單車入門基礎維修之一：洗鍊","單車入門基礎維修之二：車身基礎保養","單車入門基礎維修之三：變速器小調整","單車入門基礎維修之四：煞車認識與調整","單車入門基礎維修之五：快拆認識與使用","單車入門基礎維修之六：換內胎簡單版本","單車入門基礎維修之七：落鍊處理","單初入門基礎維修之八：除銹處理"];
+				var id=["slb6RTWS9WE","eBxBug7OlaY","ATnc288WQ4c","Kxr6HFuh_88","NbeCK-O-puQ","ZBdpfW0gfnE","GFtocrhYl7M","fBHYzaM1lw0","0n0q1sQAyWw","vbdh1_WBbsc","Vlv5W_T7gdY"];
+				var s='<ul data-role="listview" data-inset="true" data-filter="true" data-theme="d">';
+				var i=0;
+				var j=title.length;
+				
+				for (i=0; i<j; i++)
+				{
+				s += '<li><a href=\'javascript:videochange("' + id[i] + '")\'>' + title[i] + '</a></li>';
+				}
+				
+				s += '</ul>';
+				document.getElementById("list").innerHTML=s;
+			</script>
+				
+		</div><!-- /page -->
+	</body>
+</html>

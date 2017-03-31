@@ -1,0 +1,200 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<meta charset="utf-8">
+		<title>車行評價</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="jquery.mobile-1.4.0.min.css" />
+		<script src="jquery-1.10.2.js"></script>
+		<script src="jquery.mobile-1.4.0.js"></script>
+		<script>
+		/*讀入資料*/
+		
+		var a;   //總共有a筆資料
+		var b,c,d,i;
+
+		function readresponse1(json)   //json為參數名，用來接收callback回傳的資料
+		{
+			a=json.feed.entry.length;
+			for (i=0;i<a;i++)
+			{
+				b=json.feed.entry[i].gsx$name.$t;
+				c=json.feed.entry[i].gsx$rating.$t;
+				d=json.feed.entry[i].gsx$comment.$t;
+				if (b=="興安車行")
+					document.write("<li>" + "評價(星等)：" + c + "顆星</br>" + "建議：" + d + "</li>");
+			}
+		}
+		
+		function readresponse2(json)   //json為參數名，用來接收callback回傳的資料
+		{
+			for (i=0;i<a;i++)
+			{
+				b=json.feed.entry[i].gsx$name.$t;
+				c=json.feed.entry[i].gsx$rating.$t;
+				d=json.feed.entry[i].gsx$comment.$t;
+				if (b=="建南車行")
+					document.write("<li>" + "評價(星等)：" + c + "顆星</br>" + "建議：" + d + "</li>");
+			}
+		}
+		
+		function readresponse3(json)   //json為參數名，用來接收callback回傳的資料
+		{
+			for (i=0;i<a;i++)
+			{
+				b=json.feed.entry[i].gsx$name.$t;
+				c=json.feed.entry[i].gsx$rating.$t;
+				d=json.feed.entry[i].gsx$comment.$t;
+				if (b=="牧野自行車精品")
+					document.write("<li>" + "評價(星等)：" + c + "顆星</br>" + "建議：" + d + "</li>");
+			}
+		}
+		
+		function readresponse4(json)   //json為參數名，用來接收callback回傳的資料
+		{
+			for (i=0;i<a;i++)
+			{
+				b=json.feed.entry[i].gsx$name.$t;
+				c=json.feed.entry[i].gsx$rating.$t;
+				d=json.feed.entry[i].gsx$comment.$t;
+				if (b=="捷安特 高昇車行")
+					document.write("<li>" + "評價(星等)：" + c + "顆星</br>" + "建議：" + d + "</li>");
+			}
+		}
+		
+		function readresponse5(json)   //json為參數名，用來接收callback回傳的資料
+		{
+			for (i=0;i<a;i++)
+			{
+				b=json.feed.entry[i].gsx$name.$t;
+				c=json.feed.entry[i].gsx$rating.$t;
+				d=json.feed.entry[i].gsx$comment.$t;
+				if (b=="捷安特 興大店")
+					document.write("<li>" + "評價(星等)：" + c + "顆星</br>" + "建議：" + d + "</li>");
+			}
+		}
+		
+		function readresponse6(json)   //json為參數名，用來接收callback回傳的資料
+		{
+			for (i=0;i<a;i++)
+			{
+				b=json.feed.entry[i].gsx$name.$t;
+				c=json.feed.entry[i].gsx$rating.$t;
+				d=json.feed.entry[i].gsx$comment.$t;
+				if (b=="百奇客單車行")
+					document.write("<li>" + "評價(星等)：" + c + "顆星</br>" + "建議：" + d + "</li>");
+			}
+		}
+		
+		function readresponse7(json)   //json為參數名，用來接收callback回傳的資料
+		{
+			for (i=0;i<a;i++)
+			{
+				b=json.feed.entry[i].gsx$name.$t;
+				c=json.feed.entry[i].gsx$rating.$t;
+				d=json.feed.entry[i].gsx$comment.$t;
+				if (b=="聖平車行")
+					document.write("<li>" + "評價(星等)：" + c + "顆星</br>" + "建議：" + d + "</li>");
+			}
+		}
+		
+		function readresponse8(json)   //json為參數名，用來接收callback回傳的資料
+		{
+			for (i=0;i<a;i++)
+			{
+				b=json.feed.entry[i].gsx$name.$t;
+				c=json.feed.entry[i].gsx$rating.$t;
+				d=json.feed.entry[i].gsx$comment.$t;
+				if (b=="義隆行自行車")
+					document.write("<li>" + "評價(星等)：" + c + "顆星</br>" + "建議：" + d + "</li>");
+			}
+		}
+		
+		function readresponse9(json)   //json為參數名，用來接收callback回傳的資料
+		{
+			for (i=0;i<a;i++)
+			{
+				b=json.feed.entry[i].gsx$name.$t;
+				c=json.feed.entry[i].gsx$rating.$t;
+				d=json.feed.entry[i].gsx$comment.$t;
+				if (b=="全成自行車行")
+					document.write("<li>" + "評價(星等)：" + c + "顆星</br>" + "建議：" + d + "</li>");
+			}
+		}
+		</script>
+	</head> 
+	<body>
+		<div data-role="page">
+			<div data-role="header">
+				<h1>車行評價</h1>
+				<a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+			</div><!-- /header -->
+			<div data-role="content"> 
+			<h2>他人評價</h2>
+			<div data-role="collapsible" data-collapsed="true" data-theme="a" data-content-theme="c" id="shop1">
+			<h3>興安車行</h3>
+			<ul data-role="listview">
+			<script src="https://spreadsheets.google.com/feeds/list/0AofVGV-4Xd74dDF3NHU1WTlrN2dHSWZfV3ZaeWY5eHc/od6/public/values?alt=json-in-script&callback=readresponse1">
+			</script>
+			</ul>
+			</div><!-- / shop1-->
+			<div data-role="collapsible" data-collapsed="true" data-theme="a" data-content-theme="c" id="shop2">
+			<h2>建南車行</h2>
+			<ul data-role="listview">
+			<script src="https://spreadsheets.google.com/feeds/list/0AofVGV-4Xd74dDF3NHU1WTlrN2dHSWZfV3ZaeWY5eHc/od6/public/values?alt=json-in-script&callback=readresponse2">
+			</script>
+			</ul>
+			</div><!-- / shop2-->
+			<div data-role="collapsible" data-collapsed="true" data-theme="a" data-content-theme="c" id="shop3">
+			<h2>牧野自行車精品</h2>
+			<ul data-role="listview">
+			<script src="https://spreadsheets.google.com/feeds/list/0AofVGV-4Xd74dDF3NHU1WTlrN2dHSWZfV3ZaeWY5eHc/od6/public/values?alt=json-in-script&callback=readresponse3">
+			</script>
+			</ul>
+			</div><!-- / shop3-->
+			<div data-role="collapsible" data-collapsed="true" data-theme="a" data-content-theme="c" id="shop4">
+			<h2>捷安特 高昇車行</h2>
+			<ul data-role="listview">
+			<script src="https://spreadsheets.google.com/feeds/list/0AofVGV-4Xd74dDF3NHU1WTlrN2dHSWZfV3ZaeWY5eHc/od6/public/values?alt=json-in-script&callback=readresponse4">
+			</script>
+			</ul>
+			</div><!-- / shop4-->
+			<div data-role="collapsible" data-collapsed="true" data-theme="a" data-content-theme="c" id="shop5">
+			<h2>捷安特 興大店</h2>
+			<ul data-role="listview">
+			<script src="https://spreadsheets.google.com/feeds/list/0AofVGV-4Xd74dDF3NHU1WTlrN2dHSWZfV3ZaeWY5eHc/od6/public/values?alt=json-in-script&callback=readresponse5">
+			</script>
+			</ul>
+			</div><!-- / shop5-->
+			<div data-role="collapsible" data-collapsed="true" data-theme="a" data-content-theme="c" id="shop6">
+			<h2>百奇客單車行</h2>
+			<ul data-role="listview">
+			<script src="https://spreadsheets.google.com/feeds/list/0AofVGV-4Xd74dDF3NHU1WTlrN2dHSWZfV3ZaeWY5eHc/od6/public/values?alt=json-in-script&callback=readresponse6">
+			</script>
+			</ul>
+			</div><!-- / shop6-->
+			<div data-role="collapsible" data-collapsed="true" data-theme="a" data-content-theme="c" id="shop7">
+			<h2>聖平車行</h2>
+			<ul data-role="listview">
+			<script src="https://spreadsheets.google.com/feeds/list/0AofVGV-4Xd74dDF3NHU1WTlrN2dHSWZfV3ZaeWY5eHc/od6/public/values?alt=json-in-script&callback=readresponse7">
+			</script>
+			</ul>
+			</div><!-- / shop7-->
+			<div data-role="collapsible" data-collapsed="true" data-theme="a" data-content-theme="c" id="shop8">
+			<h2>義隆行自行車</h2>
+			<ul data-role="listview">
+			<script src="https://spreadsheets.google.com/feeds/list/0AofVGV-4Xd74dDF3NHU1WTlrN2dHSWZfV3ZaeWY5eHc/od6/public/values?alt=json-in-script&callback=readresponse8">
+			</script>
+			</ul>
+			</div><!-- / shop8-->
+			<div data-role="collapsible" data-collapsed="true" data-theme="a" data-content-theme="c" id="shop9">
+			<h2>全成自行車行</h2>
+			<ul data-role="listview">
+			<script src="https://spreadsheets.google.com/feeds/list/0AofVGV-4Xd74dDF3NHU1WTlrN2dHSWZfV3ZaeWY5eHc/od6/public/values?alt=json-in-script&callback=readresponse9">
+			</script>
+			</ul>
+			</div><!-- / shop9-->
+			</div><!-- /content -->
+		</div><!-- /page -->
+	</body>
+</html>

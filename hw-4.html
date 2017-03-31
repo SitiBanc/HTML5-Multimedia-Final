@@ -1,0 +1,78 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<meta charset="utf-8">
+		<title>車行評價</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="jquery.mobile-1.4.0.min.css" />
+		<script src="jquery-1.10.2.js"></script>
+		<script src="jquery.mobile-1.4.0.js"></script>
+		<script>
+		/*寫入資料*/
+		function formresponse() 
+		{
+			var n = document.forms["form1"]["name"].value;
+			var r = document.forms["form1"]["rating"].value;
+			var c = document.forms["form1"]["comment"].value;
+			if (n==null || n=="" || n=="choose-one")
+			{
+				alert("車行名稱未選!");
+				return false;
+			}
+			else if (r==null || r=="")
+			{
+				alert("評價不可為空白!");
+				return false;
+			}
+			else
+			{
+			var mysubmit = "https://docs.google.com/forms/d/1hur5sUuEwbXBzRBXd04kJcrZ9v6VydgPw_7d4QkgMWI/formResponse?entry.4711423=" + n + "&entry.511161113=" + r + "&entry.1514361835=" + c +"&submit=Submit";
+			$("#formResponse").html(unescape("%3Cscript type='text/javascript' src='" + mysubmit + "'%3E%3C/script%3E"));   //使用jQuery語法
+			alert("送出成功！");
+			}
+		}				
+		</script>
+	</head> 
+	<body>
+		<div data-role="page">
+			<div data-role="header">
+				<h1>車行評價</h1>
+				<a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+			</div><!-- /header -->
+			<div data-role="content"> 
+			<span id="formResponse"></span>
+			<form name="form1" action="javascript:formresponse();">
+			<div class="ui-field-contain" id="name_form">
+			<h2>給予評價</h2>
+			<label for="name" class="select">車行名稱：</label>
+				<select name="name" id="name">
+					<option value="choose-one" data-placeholder="true">請選擇車行...</option>
+					<option value="興安車行">興安車行</option>
+					<option value="建南車行">建南車行</option>
+					<option value="牧野自行車精品">牧野自行車精品</option>
+					<option value="捷安特 高昇車行">捷安特 高昇車行</option>
+					<option value="捷安特 興大店">捷安特 興大店</option>
+					<option value="百奇客單車行">百奇客單車行</option>
+					<option value="聖平車行">聖平車行</option>
+					<option value="義隆行自行車">義隆行自行車</option>
+					<option value="全成自行車行">全成自行車行</option>
+				</select>
+			</br>
+			</div><!-- /name_form -->
+			<div class="ui-field-contain" id="rating_form">
+			<label for="rating">評價(星等)：</label>
+				<input type="range" name="rating" id="rating" value="1" min="1" max="5">
+			</br>
+			</div><!-- /rating_form -->
+			<div class="ui-field-contain" id="comment_form">
+			<label for="textarea">建議：</label>
+			</br>
+				<textarea cols="40" rows="8" name="comment" id="comment"></textarea>
+			</div><!-- /comment_form -->
+			<div class="ui-field-contain" id="sumbit_form">
+			<input type="submit" value="送出">
+			</div><!-- /submit_form -->
+			</div><!-- /content -->
+		</div><!-- /page -->
+	</body>
+</html>

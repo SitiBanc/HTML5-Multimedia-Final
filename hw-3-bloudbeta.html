@@ -1,0 +1,208 @@
+<!DOCTYPE html> 
+<html> 
+	<head>
+		<meta charset="utf-8">
+		<title>附近車行</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="jquery.mobile-1.4.0.min.css" />
+		<script src="jquery-1.10.2.js"></script>
+		<script src="jquery.mobile-1.4.0.js"></script>
+		<script>
+		function getLocation()   //得到所在位置
+		{
+			if (navigator.geolocation)
+			{
+			navigator.geolocation.getCurrentPosition(showInfo,showError);
+			}
+			else{alert("瀏覽器並不支援定位功能");}
+		}
+		
+		function Create2DArray(t)   //動態宣告陣列
+		{
+			var array = [];
+			for (var i=0;i<t;i++) 
+			{
+				array[i] = [];
+			}
+			return array;
+		}
+		
+		function getInfo(json)   //從雲端拿資料
+		{
+			var t=json.feed.entry.length;
+			var data=Create2DArray(t);
+			
+			for (var i=0;i<t;i++)
+			{
+			data[i][0] = json.feed.entry[i].gsx$order.$t;
+			data[i][1] = json.feed.entry[i].gsx$name.$t;
+			data[i][2] = json.feed.entry[i].gsx$latitude.$t;
+			data[i][3] = json.feed.entry[i].gsx$longitude.$t;
+			data[i][4] = json.feed.entry[i].gsx$ref.$t;
+			document.write("order:"+data[i][0]+"</br>");
+			}
+
+		}
+				
+		function showInfo(position)
+		{
+			var latlon=position.coords.latitude+","+position.coords.longitude;
+			var i,j=data.length;
+			/*Show Map*/
+			var img_url="http://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&markers=color:red%7C"+latlon+"";
+			for (i=0;i<j;i++)
+			{
+			img_url+="&markers=color:blue%7Clabel:"+data[i][0]+"%7C"+data[i][2]+","+data[i][3]+"";
+			}
+			img_url+='&size=400x300&sensor=false';
+			document.getElementById("showmap").innerHTML="<img src='"+img_url+"'>";
+			/*Show List*/
+			var s='<ul data-role="listview">';
+			var i=0;
+			var j=data.length;
+			for (i=0;i<j;i++)
+			{			
+			s+='<li><a href="#' + data[i][3] + '" class="ui-btn ui-shadow ui-corner-all" data-rel="dialog" data-transition="pop">' +data[i][0]+ '. ' +data[i][1]+ '</li>';
+			}
+			s+='</ul>';
+			document.getElementById("showlist").innerHTML=s;
+		}
+		
+		function showError(error)
+		{
+			switch(error.code) 
+			{
+			case error.PERMISSION_DENIED:
+			x.innerHTML="User denied the request for Geolocation."
+			break;
+			case error.POSITION_UNAVAILABLE:
+			x.innerHTML="Location information is unavailable."
+			break;
+			case error.TIMEOUT:
+			x.innerHTML="The request to get user location timed out."
+			break;
+			case error.UNKNOWN_ERROR:
+			x.innerHTML="An unknown error occurred."
+			break;
+			}
+		}
+		
+		</script>
+		<script src="https://spreadsheets.google.com/feeds/list/0AofVGV-4Xd74dHhOTExsZWwwOFd6N3Ffa1JMNGJhSHc/od6/public/values?alt=json-in-script&callback=getInfo"></script>
+	</head> 
+	<body>
+		<div data-role="page" id="ststicmap">
+			<div data-role="header" >
+				<h1>附近車行</h1>
+				<a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+			</div><!-- /header -->
+			<div data-role="content"> 
+				<div id="showmap">
+					<script>getLocation()</script>
+				</div><!-- /showmap -->
+				<div id="showlist">
+				</div><!--showlist-->
+			</div><!-- /content -->
+			
+
+		</div><!-- /page -->
+		<div data-role="page" id="shop1">
+			<div data-role="header" data-theme="b">
+				<h1>興安車行</h1>
+                <a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+                <a href="hw-3.html" rel="external" data-icon="forward" class="ui-btn-right">Back</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<p>地址：中興大學男生宿舍(台中市南區興大路295號)腳踏車部</p>
+				<p>連絡電話：04-2284-0473(中興大學男宿服務中心)</p>
+			</div><!-- /content -->
+		</div><!-- /page -->
+		<div data-role="page" id="shop2">
+			<div data-role="header" data-theme="b">
+				<h1>建南車行</h1>
+                <a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+                <a href="hw-3.html" rel="external" data-icon="forward" class="ui-btn-right">Back</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<p>地址：台中市南區興大路432巷20號</p>
+			</div><!-- /content -->
+		</div><!-- /page -->
+		<div data-role="page" id="shop3">
+			<div data-role="header" data-theme="b">
+				<h1>牧野自行車精品</h1>
+                <a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+                <a href="hw-3.html" rel="external" data-icon="forward" class="ui-btn-right">Back</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<p>地址：台中市南區工學路13號之17</p>
+				<p>連絡電話：04-2260-7749</p>
+			</div><!-- /content -->
+		</div><!-- /page -->
+		<div data-role="page" id="shop4">
+			<div data-role="header" data-theme="b">
+				<h1>捷安特 高昇車行車行</h1>
+                <a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+                <a href="hw-3.html" rel="external" data-icon="forward" class="ui-btn-right">Back</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<p>地址：台中市南區復興路二段107號</p>
+				<p>連絡電話：04-2260-8768</p>
+			</div><!-- /content -->
+		</div><!-- /page -->
+		<div data-role="page" id="shop5">
+			<div data-role="header" data-theme="b">
+				<h1>捷安特 興大店</h1>
+                <a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+                <a href="hw-3.html" rel="external" data-icon="forward" class="ui-btn-right">Back</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<p>地址：台中市南區復新街87巷9號</p>
+				<p>連絡電話：04-2285-1540</p>
+			</div><!-- /content -->
+		</div><!-- /page -->
+		<div data-role="page" id="shop6">
+			<div data-role="header" data-theme="b">
+				<h1>百奇客單車行</h1>
+                <a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+                <a href="hw-3.html" rel="external" data-icon="forward" class="ui-btn-right">Back</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<p>地址：台中市大里區大明路358號<p>
+				<p>連絡電話：04-2406-2414</p>
+			</div><!-- /content -->
+		</div><!-- /page -->
+		<div data-role="page" id="shop7">
+			<div data-role="header" data-theme="b">
+				<h1>聖平車行</h1>
+                <a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+                <a href="hw-3.html" rel="external" data-icon="forward" class="ui-btn-right">Back</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<p>地址：台中市南區台中路322號<p>
+				<p>連絡電話：04-2287-5321</p>
+			</div><!-- /content -->
+		</div><!-- / page -->
+		<div data-role="page" id="shop8">
+			<div data-role="header" data-theme="b">
+				<h1>義隆行自行車</h1>
+                <a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+                <a href="hw-3.html" rel="external" data-icon="forward" class="ui-btn-right">Back</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<p>地址：台中市南區建成路1079號1樓<p>
+				<p>連絡電話：04-2283-0166</p>
+			</div><!-- /content -->
+		</div><!-- /page -->
+        <div data-role="page" id="shop9">
+			<div data-role="header" data-theme="b">
+				<h1>全成自行車行</h1>
+                <a href="hw-1.html" rel="external" data-icon="home" class="ui-btn-left">Home</a>
+                <a href="hw-3.html" rel="external" data-icon="forward" class="ui-btn-right">Back</a>
+			</div><!-- /header -->
+			<div data-role="content">
+				<p>地址：台中市東區大智路198號<p>
+				<p>連絡電話：04-2280-3328</p>
+			</div><!-- /content -->
+		</div><!-- /page -->
+	</body>
+</html>
